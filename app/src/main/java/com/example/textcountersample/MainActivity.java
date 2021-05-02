@@ -40,5 +40,11 @@ public class MainActivity extends AppCompatActivity {
             int count = getCharsCount(userInputText);
             tvOutput.setText(String.valueOf(count));
         }
+
+        if(selection.equalsIgnoreCase("Words")){
+            userInputText = userInputText.replace("\n", " ");
+            String[] userInputTextArray = userInputText.split(" ");
+            tvOutput.setText("Words: " + userInputTextArray.length);
+        }
     }
 }
