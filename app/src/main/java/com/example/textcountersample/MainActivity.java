@@ -9,9 +9,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.textcountersample.utils.ElementsCalculator;
+
 import java.util.ArrayList;
 
 import static com.example.textcountersample.utils.ElementsCalculator.getCharsCount;
+import static com.example.textcountersample.utils.ElementsCalculator.getWordsCount;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,12 +49,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if(selection.equalsIgnoreCase("Chars")){
-            int count = getCharsCount(userInputText);
+            int count = ElementsCalculator.getCharsCount(userInputText);
             tvOutput.setText("Chars: " + String.valueOf(count));
         }
 
         if(selection.equalsIgnoreCase("Words")){
-            userInputText = userInputText.replace("\n", " ");
+            int count = ElementsCalculator.getWordsCount(userInputText);
+            /*userInputText = userInputText.replace("\n", " ");*/
             String[] userInputTextArray = userInputText.split(" ");
             tvOutput.setText("Words: " + userInputTextArray.length);
         }
