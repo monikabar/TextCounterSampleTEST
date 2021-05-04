@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">TextCounterSample</string>
     <string name="btn_calculate_caption">Calculate</string>
-    <string-array name="wordsChars_array">
+    <string name="entry">Empty</string>
+    <string-array name="words_chars_array">
         <item>Words</item>
         <item>Chars</item>
     </string-array>

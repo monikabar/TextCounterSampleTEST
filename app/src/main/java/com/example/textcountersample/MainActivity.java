@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -22,10 +23,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         this.ddSelection = (Spinner) findViewById(R.id.ddSelection);
-        ArrayList<String> selectionOptionsList = new ArrayList<>();
+        /*ArrayList<String> selectionOptionsList = new ArrayList<>();
         selectionOptionsList.add("Words");
         selectionOptionsList.add("Chars");
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, selectionOptionsList);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, selectionOptionsList);*/
+        ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter.createFromResource(this, R.array.words_chars_array, android.R.layout.simple_spinner_dropdown_item);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.ddSelection.setAdapter(arrayAdapter);
     }
@@ -36,9 +38,16 @@ public class MainActivity extends AppCompatActivity {
         String userInputText = edUserInput.getText().toString();
 
         String selection = this.ddSelection.getSelectedItem().toString();
+        if (edUserInput.getText().toString().trim().length() <=0) {
+            int resID = R.string.entry;
+            Toast.makeText(this, String.valueOf(resID), Toast.LENGTH_SHORT).show();
+            String resValue = getResources().getString(R.string.entry);
+            Toast.makeText(this, String.valueOf(resValue), Toast.LENGTH_SHORT).show();
+        }
+
         if(selection.equalsIgnoreCase("Chars")){
             int count = getCharsCount(userInputText);
-            tvOutput.setText(String.valueOf(count));
+            tvOutput.setText("Chars: " + String.valueOf(count));
         }
 
         if(selection.equalsIgnoreCase("Words")){
