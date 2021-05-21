@@ -3,6 +3,7 @@ package com.example.textcountersample;
 import org.junit.Test;
 
 import static com.example.textcountersample.utils.ElementsCalculator.getCharsCount;
+import static com.example.textcountersample.utils.ElementsCalculator.getWordsCount;
 import static org.junit.Assert.*;
 
 /**
@@ -51,6 +52,69 @@ public class ExampleUnitTest {
         String givenInput = "A1_b@ &";
         int expectedResult = 7;
         int actualResult = getCharsCount(givenInput);
+        assertEquals(expectedResult, actualResult);
+    }
+    @Test
+    public void whenCharsInputVeryLong() {
+        String givenInput = "kkdjskgjakgfdjahkjaskhjgkhjkfghsjghgjkfdkjkdgjksjgksfjksfjhksljhskljhklsjhksfjhk";
+        int expectedResult = 80;
+        int actualResult = getCharsCount(givenInput);
+        assertEquals(expectedResult, actualResult);
+    }
+    @Test
+    public void whenWordsInputEmpty() {
+        String givenInput = "";
+        int expectedResult = 0;
+        int actualResult = getWordsCount(givenInput);
+        assertEquals(expectedResult, actualResult);
+    }
+    @Test
+    public void whenWordsInputLetters() {
+        String givenInput = "Labas vakaras";
+        int expectedResult = 2;
+        int actualResult = getWordsCount(givenInput);
+        assertEquals(expectedResult, actualResult);
+    }
+    @Test
+    public void whenWordsInputNumbers() {
+        String givenInput = "123 456 789";
+        int expectedResult = 3;
+        int actualResult = getWordsCount(givenInput);
+        assertEquals(expectedResult, actualResult);
+    }
+    @Test
+    public void whenWordsInputSymbols() {
+        String givenInput = "/ - # (";
+        int expectedResult = 4;
+        int actualResult = getWordsCount(givenInput);
+        assertEquals(expectedResult, actualResult);
+    }
+    @Test
+    public void whenWordsInputSpace() {
+        String givenInput = "   ";
+        int expectedResult = 0;
+        int actualResult = getWordsCount(givenInput);
+        assertEquals(expectedResult, actualResult);
+    }
+    @Test
+    public void whenWordsInputVarious() {
+        String givenInput = "Labas :) 10 balų";
+        int expectedResult = 4;
+        int actualResult = getWordsCount(givenInput);
+        assertEquals(expectedResult, actualResult);
+    }
+    @Test
+    public void whenWordsInputVeryLong() {
+        String givenInput = "When you run, debug, or test your code, Android Studio uses a run/debug configuration to determine how to perform the operation. Typically, the default configuration is sufficient to run or debug an app. However, you can modify and create new configurations, and modify the default templates to suit your development process as described on this page.";
+        int expectedResult = 56;
+        int actualResult = getWordsCount(givenInput);
+        assertEquals(expectedResult, actualResult);
+    }
+    @Test
+    public void whenWordsInputWordsSum() {
+        String givenInput = "Labas" + "Vakaras";
+        int expectedResult = 1;
+        int actualResult = getWordsCount(givenInput);
         assertEquals(expectedResult, actualResult);
     }
 }
